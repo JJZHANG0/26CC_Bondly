@@ -1,161 +1,132 @@
 <template>
   <main>
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16">
-      <!-- Animated energy curve background -->
-      <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <svg
-          viewBox="0 0 1400 600"
-          class="w-full h-full opacity-[0.06]"
-          preserveAspectRatio="xMidYMid slice"
-        >
+    <section class="home-hero">
+      <div class="home-hero__backdrop" aria-hidden="true">
+        <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
           <path
             ref="energyPath"
-            d="M -100 300 C 100 300 150 180 250 220 S 400 380 500 300 S 650 120 750 200 S 900 380 1000 280 S 1150 150 1250 220 S 1400 320 1500 280"
+            d="M-120 560 C160 430 280 690 520 500 C720 342 830 210 1070 340 C1270 448 1380 246 1720 330"
             :stroke="isDark ? 'white' : 'black'"
-            stroke-width="1.5"
+            stroke-width="1.1"
             fill="none"
             stroke-linecap="round"
             class="energy-path"
           />
           <path
-            d="M -100 350 C 150 350 200 230 320 270 S 470 420 570 340 S 700 180 810 250 S 950 410 1060 310 S 1200 190 1300 260 S 1420 360 1500 320"
+            d="M-80 414 C160 302 300 458 490 354 C690 244 880 214 1060 314 C1220 404 1380 388 1640 230"
             :stroke="isDark ? 'white' : 'black'"
-            stroke-width="0.8"
+            stroke-width="0.7"
             fill="none"
             stroke-linecap="round"
-            opacity="0.5"
+            opacity="0.34"
             class="energy-path"
-            style="animation-delay: 0.5s"
+            style="animation-delay: 0.45s"
           />
         </svg>
       </div>
 
-      <!-- Hero content -->
-      <div class="relative z-10 max-w-5xl mx-auto px-6 lg:px-8 text-center">
-        <!-- Label -->
-        <div
-          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-medium mb-10 reveal"
-          :class="isDark ? 'border-white/15 text-white/50' : 'border-black/10 text-black/40'"
-        >
-          <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse inline-block"></span>
-          Social Energy Intelligence
-        </div>
-
-        <!-- Main headline -->
-        <h1
-          class="text-display font-light tracking-tightest leading-none mb-8 reveal reveal-delay-1"
-          :class="isDark ? 'text-white' : 'text-black'"
-        >
-          Understand the energy<br />
-          <span class="italic">behind every</span><br />
-          interaction.
-        </h1>
-
-        <!-- Subheadline -->
-        <p
-          class="text-subheadline font-light max-w-2xl mx-auto mb-12 reveal reveal-delay-2"
-          :class="isDark ? 'text-white/50' : 'text-black/45'"
-        >
-          {{ t.home.heroSub }}
-        </p>
-
-        <!-- CTA buttons -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal reveal-delay-3">
-          <router-link
-            to="/download"
-            class="px-8 py-3.5 rounded-xl text-sm font-medium border transition-all duration-300 min-w-[160px] text-center"
-            :class="isDark
-              ? 'bg-white text-black border-white hover:bg-transparent hover:text-white hover:border-[#39FF14] hover:shadow-[0_0_24px_rgba(57,255,20,0.3)]'
-              : 'bg-black text-white border-black hover:bg-transparent hover:text-black hover:border-[#BF5FFF] hover:shadow-[0_0_24px_rgba(191,95,255,0.3)]'"
-          >
-            {{ t.home.ctaPrimary }}
-          </router-link>
-          <button
-            class="px-8 py-3.5 rounded-xl text-sm font-medium border transition-all duration-300 min-w-[160px] flex items-center justify-center gap-2"
-            :class="isDark
-              ? 'border-white/20 text-white/70 hover:border-white hover:text-white'
-              : 'border-black/15 text-black/60 hover:border-black hover:text-black'"
-          >
-            <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
-              <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
-            </svg>
-            {{ t.home.ctaSecondary }}
-          </button>
-        </div>
-
-        <!-- Mini stats -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-8 mt-16 reveal reveal-delay-4">
-          <div class="text-center">
-            <div class="text-2xl font-light tracking-tight" :class="isDark ? 'text-white' : 'text-black'">12k+</div>
-            <div class="text-xs mt-1" :class="isDark ? 'text-white/35' : 'text-black/35'">Early users</div>
-          </div>
-          <div class="w-px h-8 hidden sm:block" :class="isDark ? 'bg-white/10' : 'bg-black/10'"></div>
-          <div class="text-center">
-            <div class="text-2xl font-light tracking-tight" :class="isDark ? 'text-white' : 'text-black'">98%</div>
-            <div class="text-xs mt-1" :class="isDark ? 'text-white/35' : 'text-black/35'">Privacy preserved</div>
-          </div>
-          <div class="w-px h-8 hidden sm:block" :class="isDark ? 'bg-white/10' : 'bg-black/10'"></div>
-          <div class="text-center">
-            <div class="text-2xl font-light tracking-tight" :class="isDark ? 'text-white' : 'text-black'">4.9</div>
-            <div class="text-xs mt-1" :class="isDark ? 'text-white/35' : 'text-black/35'">Average rating</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Floating product mockups -->
-      <div class="absolute bottom-12 left-1/2 -translate-x-1/2 w-full max-w-4xl px-6 pointer-events-none hidden lg:block">
-        <div class="flex items-end justify-center gap-6">
-          <!-- Card 1 -->
+      <div class="home-hero__inner">
+        <div class="home-hero__copy">
           <div
-            class="w-44 rounded-2xl border p-4 animate-float"
-            style="animation-delay: 0s"
-            :class="isDark ? 'bg-black border-white/10' : 'bg-white border-black/8 shadow-sm'"
+            class="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium reveal"
+            :class="isDark ? 'border-white/15 text-white/55' : 'border-black/10 text-black/45'"
           >
-            <div class="text-xs mb-3" :class="isDark ? 'text-white/40' : 'text-black/35'">Social Energy</div>
-            <svg viewBox="0 0 140 50" class="w-full" fill="none">
-              <polyline
-                points="0,40 20,30 40,38 60,15 80,25 100,10 120,18 140,8"
-                :stroke="isDark ? 'white' : 'black'"
-                stroke-width="1.5"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            <div class="text-xs mt-2 font-medium" :class="isDark ? 'text-white' : 'text-black'">↑ 12% this week</div>
+            <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse inline-block"></span>
+            Social Energy Intelligence
           </div>
-          <!-- Card 2 (taller) -->
-          <div
-            class="w-52 rounded-2xl border p-4 animate-float -mb-4"
-            style="animation-delay: 1s"
-            :class="isDark ? 'bg-black border-white/10' : 'bg-white border-black/8 shadow-sm'"
-          >
-            <div class="text-xs mb-3" :class="isDark ? 'text-white/40' : 'text-black/35'">Conversation Review</div>
-            <div class="space-y-2">
-              <div class="h-2 rounded-full w-full" :class="isDark ? 'bg-white/10' : 'bg-black/6'"></div>
-              <div class="h-2 rounded-full w-3/4" :class="isDark ? 'bg-white/10' : 'bg-black/6'"></div>
-              <div class="h-2 rounded-full w-5/6" :class="isDark ? 'bg-white/10' : 'bg-black/6'"></div>
-            </div>
-            <div class="mt-3 text-xs px-2 py-1 rounded-lg" :class="isDark ? 'bg-white/8 text-white/60' : 'bg-black/4 text-black/50'">
-              AI analysis complete
-            </div>
-          </div>
-          <!-- Card 3 -->
-          <div
-            class="w-44 rounded-2xl border p-4 animate-float"
-            style="animation-delay: 2s"
-            :class="isDark ? 'bg-black border-white/10' : 'bg-white border-black/8 shadow-sm'"
-          >
-            <div class="text-xs mb-3" :class="isDark ? 'text-white/40' : 'text-black/35'">Privacy</div>
-            <div class="flex items-center justify-center py-2">
-              <svg viewBox="0 0 40 40" fill="none" class="w-10 h-10">
-                <rect x="8" y="16" width="24" height="18" rx="3" :stroke="isDark ? 'white' : 'black'" stroke-width="1.2"/>
-                <path d="M14 16v-4a6 6 0 1112 0v4" :stroke="isDark ? 'white' : 'black'" stroke-width="1.2"/>
-                <circle cx="20" cy="25" r="2" :fill="isDark ? 'white' : 'black'"/>
+
+          <h1 class="home-hero__title reveal reveal-delay-1" :class="isDark ? 'text-white' : 'text-black'">
+            {{ t.home.heroHeadline }}
+          </h1>
+
+          <p class="home-hero__subtitle reveal reveal-delay-2" :class="isDark ? 'text-white/55' : 'text-black/50'">
+            {{ t.home.heroSub }}
+          </p>
+
+          <div class="home-hero__actions reveal reveal-delay-3">
+            <router-link
+              to="/download"
+              class="inline-flex items-center justify-center rounded-lg border px-7 py-3.5 text-sm font-medium transition-all duration-300"
+              :class="isDark
+                ? 'bg-white text-black border-white hover:bg-transparent hover:text-white hover:border-[#39FF14] hover:shadow-[0_0_24px_rgba(57,255,20,0.3)]'
+                : 'bg-black text-white border-black hover:bg-transparent hover:text-black hover:border-[#BF5FFF] hover:shadow-[0_0_24px_rgba(191,95,255,0.3)]'"
+            >
+              {{ t.home.ctaPrimary }}
+            </router-link>
+            <button
+              class="inline-flex items-center justify-center gap-2 rounded-lg border px-7 py-3.5 text-sm font-medium transition-all duration-300"
+              :class="isDark
+                ? 'border-white/20 text-white/70 hover:border-white hover:text-white'
+                : 'border-black/15 text-black/60 hover:border-black hover:text-black'"
+            >
+              <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+                <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
               </svg>
+              {{ t.home.ctaSecondary }}
+            </button>
+          </div>
+        </div>
+
+        <div class="home-hero__visual reveal reveal-delay-2" :class="isDark ? 'is-dark' : 'is-light'">
+          <div class="home-hero__visual-head">
+            <div>
+              <p>Energy Map</p>
+              <span>Today · workplace + close ties</span>
             </div>
-            <div class="text-xs text-center" :class="isDark ? 'text-white/50' : 'text-black/40'">Local Processing</div>
+            <div class="home-hero__live">
+              <span></span>
+              Live
+            </div>
+          </div>
+
+          <svg viewBox="0 0 620 360" fill="none" class="home-hero__chart">
+            <defs>
+              <linearGradient id="homeHeroArea" x1="0" y1="90" x2="0" y2="330" gradientUnits="userSpaceOnUse">
+                <stop :stop-color="isDark ? 'white' : 'black'" stop-opacity="0.13" />
+                <stop offset="1" :stop-color="isDark ? 'white' : 'black'" stop-opacity="0" />
+              </linearGradient>
+            </defs>
+            <path v-for="y in [92, 152, 212, 272, 332]" :key="`h-${y}`" :d="`M40 ${y}H580`" :stroke="isDark ? 'white' : 'black'" opacity="0.08"/>
+            <path v-for="x in [110, 200, 290, 380, 470, 560]" :key="`v-${x}`" :d="`M${x} 70V332`" :stroke="isDark ? 'white' : 'black'" opacity="0.06"/>
+            <path
+              d="M40 288 C92 260 126 224 178 238 C236 254 256 310 316 260 C376 210 392 126 464 152 C524 174 536 112 580 96 L580 332 L40 332 Z"
+              fill="url(#homeHeroArea)"
+            />
+            <path
+              d="M40 288 C92 260 126 224 178 238 C236 254 256 310 316 260 C376 210 392 126 464 152 C524 174 536 112 580 96"
+              :stroke="isDark ? 'white' : 'black'"
+              stroke-width="2.8"
+              stroke-linecap="round"
+            />
+            <path
+              d="M40 210 C100 186 132 202 188 176 C252 146 316 126 378 154 C436 180 498 190 580 150"
+              :stroke="isDark ? 'white' : 'black'"
+              stroke-width="1.2"
+              stroke-linecap="round"
+              opacity="0.38"
+            />
+            <circle cx="316" cy="260" r="6" :fill="isDark ? 'white' : 'black'" />
+            <circle cx="464" cy="152" r="7" :fill="isDark ? '#39FF14' : '#BF5FFF'" />
+            <path d="M464 72V320" :stroke="isDark ? '#39FF14' : '#BF5FFF'" stroke-width="1" stroke-dasharray="5 6" opacity="0.55"/>
+          </svg>
+
+          <div class="home-hero__insight-row">
+            <div>
+              <span>Social Energy</span>
+              <strong>72%</strong>
+              <p>Rising after recovery window</p>
+            </div>
+            <div>
+              <span>Conversation</span>
+              <strong>98%</strong>
+              <p>Local analysis complete</p>
+            </div>
+            <div>
+              <span>Privacy</span>
+              <strong>On-device</strong>
+              <p>No unnecessary upload</p>
+            </div>
           </div>
         </div>
       </div>

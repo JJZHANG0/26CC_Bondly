@@ -11,7 +11,7 @@ export const translations = {
       signup: 'Sign Up',
     },
     home: {
-      heroHeadline: 'Understand the energy behind every interaction.',
+      heroHeadline: 'See your social energy clearly.',
       heroSub: 'An AI-powered social energy app that helps you decode conversations, track emotional exhaustion, and understand the relationships that shape your daily life.',
       ctaPrimary: 'Start for Free',
       ctaSecondary: 'Watch Demo',
@@ -188,7 +188,7 @@ export const translations = {
       signup: '注册',
     },
     home: {
-      heroHeadline: '理解每一次互动背后的能量。',
+      heroHeadline: '看清你的社交能量。',
       heroSub: '一款 AI 社交能量应用，帮助你解读对话、追踪情绪消耗，了解塑造你日常生活的人际关系。',
       ctaPrimary: '免费开始',
       ctaSecondary: '观看演示',
