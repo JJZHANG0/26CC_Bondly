@@ -1,7 +1,21 @@
 # 26CC_Bondly
 
 GitHub: [JJZHANG0/26CC_Bondly](https://github.com/JJZHANG0/26CC_Bondly).  
-**Live site (GitHub Pages):** after you enable Pages → GitHub Actions in the repo settings, the build deploys to `https://jjzhang0.github.io/26CC_Bondly/` (hash routes, e.g. `/#/about`).
+**Live site:** `https://jjzhang0.github.io/26CC_Bondly/`
+
+### GitHub Pages 设置（必看）
+
+仓库里的根目录 `index.html` 是 **Vite 开发入口**，不能直接当静态站；线上必须提供 **`npm run build` 之后的文件**。
+
+任选其一：
+
+1. **推荐 — GitHub Actions**  
+   Settings → Pages → **Build and deployment** → Source 选 **GitHub Actions**。推送 `main` 后由 workflow 构建 `dist` 并发布。
+
+2. **从分支发布**  
+   Settings → Pages → Source 选 **Deploy from a branch** → Branch **main**，Folder **`/docs`**（不要用 `/ (root)`）。本仓库已包含预构建的 `docs/` 目录；更新站点后请在本地执行 `npm run build:pages` 再提交 `docs/`。
+
+若 Pages 仍指向 **根目录 `/`**，浏览器会去加载 `https://jjzhang0.github.io/src/main.js`（404），页面会一片空白。
 
 ---
 
