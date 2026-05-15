@@ -5,7 +5,7 @@
       eyebrow="Products"
       :title="t.products.headline"
       :subtitle="t.products.sub"
-      banner-src="./banners/products-banner.svg"
+      banner-src="./banners/products-banner.png"
       :is-dark="isDark"
     />
 

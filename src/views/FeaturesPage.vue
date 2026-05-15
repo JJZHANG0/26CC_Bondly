@@ -5,7 +5,7 @@
       eyebrow="Features"
       :title="t.features.headline"
       :subtitle="t.features.sub"
-      banner-src="./banners/features-banner.svg"
+      banner-src="./banners/features-banner.png"
       :is-dark="isDark"
     />
 

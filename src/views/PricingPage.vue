@@ -5,7 +5,7 @@
       eyebrow="Pricing"
       :title="t.pricing.headline"
       :subtitle="t.pricing.sub"
-      banner-src="./banners/pricing-banner.svg"
+      banner-src="./banners/pricing-banner.png"
       :is-dark="isDark"
     >
       <!-- Billing toggle -->

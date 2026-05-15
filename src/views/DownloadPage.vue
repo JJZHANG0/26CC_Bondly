@@ -5,7 +5,7 @@
       eyebrow="Download"
       :title="t.download.headline"
       :subtitle="t.download.sub"
-      banner-src="./banners/download-banner.svg"
+      banner-src="./banners/download-banner.png"
       :is-dark="isDark"
     >
       <!-- Download buttons -->
