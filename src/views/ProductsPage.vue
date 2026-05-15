@@ -1,23 +1,7 @@
 <template>
   <main class="pt-24">
     <!-- Hero -->
-    <section class="py-24 lg:py-40 border-b" :class="isDark ? 'border-white/8' : 'border-black/6'">
-      <div class="max-w-5xl mx-auto px-6 lg:px-8">
-        <p class="text-xs tracking-widest uppercase mb-8 reveal" :class="isDark ? 'text-white/30' : 'text-black/30'">
-          Products
-        </p>
-        <h1
-          class="text-display font-light tracking-tightest leading-none mb-6 reveal reveal-delay-1"
-          :class="isDark ? 'text-white' : 'text-black'"
-          style="max-width: 820px;"
-        >
-          {{ t.products.headline }}
-        </h1>
-        <p class="text-lg font-light reveal reveal-delay-2" :class="isDark ? 'text-white/45' : 'text-black/40'">
-          {{ t.products.sub }}
-        </p>
-      </div>
-    </section>
+    <PageHero eyebrow="Products" :title="t.products.headline" :subtitle="t.products.sub" :is-dark="isDark" />
 
     <!-- Product 1: Mobile App -->
     <section class="py-24 lg:py-40 border-b" :class="isDark ? 'border-white/8' : 'border-black/6'">
@@ -318,6 +302,7 @@
 
 <script setup>
 import { computed } from 'vue'
+import PageHero from '@/components/PageHero.vue'
 import { useAppStore } from '@/stores/appStore'
 import { useTranslation } from '@/i18n/translations'
 import { useScrollReveal } from '@/composables/useScrollReveal'

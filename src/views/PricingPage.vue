@@ -1,23 +1,9 @@
 <template>
   <main class="pt-24">
     <!-- Hero -->
-    <section class="py-24 lg:py-40 border-b" :class="isDark ? 'border-white/8' : 'border-black/6'">
-      <div class="max-w-5xl mx-auto px-6 lg:px-8 text-center">
-        <p class="text-xs tracking-widest uppercase mb-8 reveal" :class="isDark ? 'text-white/30' : 'text-black/30'">
-          Pricing
-        </p>
-        <h1
-          class="text-display font-light tracking-tightest leading-none mb-6 reveal reveal-delay-1"
-          :class="isDark ? 'text-white' : 'text-black'"
-        >
-          {{ t.pricing.headline }}
-        </h1>
-        <p class="text-lg font-light reveal reveal-delay-2" :class="isDark ? 'text-white/45' : 'text-black/40'">
-          {{ t.pricing.sub }}
-        </p>
-
-        <!-- Billing toggle -->
-        <div class="flex items-center justify-center gap-3 mt-10 reveal reveal-delay-3">
+    <PageHero eyebrow="Pricing" :title="t.pricing.headline" :subtitle="t.pricing.sub" :is-dark="isDark">
+      <!-- Billing toggle -->
+      <div class="flex items-center gap-3">
           <span class="text-sm" :class="isDark ? 'text-white/60' : 'text-black/50'">Monthly</span>
           <button
             @click="isYearly = !isYearly"
@@ -38,9 +24,8 @@
               Save 30%
             </span>
           </span>
-        </div>
       </div>
-    </section>
+    </PageHero>
 
     <!-- Pricing Cards -->
     <section class="py-24 lg:py-40">
@@ -274,6 +259,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import PageHero from '@/components/PageHero.vue'
 import { useAppStore } from '@/stores/appStore'
 import { useTranslation } from '@/i18n/translations'
 import { useScrollReveal } from '@/composables/useScrollReveal'
