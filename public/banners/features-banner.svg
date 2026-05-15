@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 900" role="img" aria-label="Features banner">
+  <rect width="2400" height="900" fill="#f6f7f7"/>
+  <g opacity=".5" stroke="#d8d8d8" stroke-width="1">
+    <path d="M0 150h2400M0 300h2400M0 450h2400M0 600h2400M0 750h2400"/>
+    <path d="M180 0v900M360 0v900M540 0v900M720 0v900M900 0v900M1080 0v900M1260 0v900M1440 0v900M1620 0v900M1800 0v900M1980 0v900M2160 0v900"/>
+  </g>
+  <circle cx="1710" cy="430" r="300" fill="#eaf0ff" opacity=".5"/>
+  <path d="M1000 604c138-114 250-52 360-118 134-82 188-226 356-180 132 36 222 164 392 48" fill="none" stroke="#111" stroke-width="7" stroke-linecap="round" opacity=".58"/>
+  <path d="M1040 420c140-70 238 32 370-40 120-66 254-90 390-20 102 52 210 54 330-18" fill="none" stroke="#111" stroke-width="4" stroke-linecap="round" opacity=".24"/>
+  <circle cx="1360" cy="486" r="12" fill="#111" opacity=".5"/>
+  <circle cx="1716" cy="306" r="12" fill="#111" opacity=".5"/>
+  <circle cx="2108" cy="354" r="12" fill="#111" opacity=".5"/>
+</svg>

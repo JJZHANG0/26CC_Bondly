@@ -1,7 +1,7 @@
 <template>
   <main class="pt-24">
     <!-- Hero -->
-    <PageHero eyebrow="About AuraLoop" :title="t.about.headline" :is-dark="isDark" />
+    <PageHero eyebrow="About AuraLoop" :title="t.about.headline" banner-src="./banners/about-banner.svg" :is-dark="isDark" />
 
     <!-- Mission -->
     <section class="py-24 lg:py-40 border-b" :class="isDark ? 'border-white/8' : 'border-black/6'">

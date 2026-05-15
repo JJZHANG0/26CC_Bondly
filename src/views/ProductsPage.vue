@@ -1,7 +1,13 @@
 <template>
   <main class="pt-24">
     <!-- Hero -->
-    <PageHero eyebrow="Products" :title="t.products.headline" :subtitle="t.products.sub" :is-dark="isDark" />
+    <PageHero
+      eyebrow="Products"
+      :title="t.products.headline"
+      :subtitle="t.products.sub"
+      banner-src="./banners/products-banner.svg"
+      :is-dark="isDark"
+    />
 
     <!-- Product 1: Mobile App -->
     <section class="py-24 lg:py-40 border-b" :class="isDark ? 'border-white/8' : 'border-black/6'">

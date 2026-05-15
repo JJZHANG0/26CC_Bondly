@@ -1,7 +1,13 @@
 <template>
   <main class="pt-24">
     <!-- Hero -->
-    <PageHero eyebrow="Pricing" :title="t.pricing.headline" :subtitle="t.pricing.sub" :is-dark="isDark">
+    <PageHero
+      eyebrow="Pricing"
+      :title="t.pricing.headline"
+      :subtitle="t.pricing.sub"
+      banner-src="./banners/pricing-banner.svg"
+      :is-dark="isDark"
+    >
       <!-- Billing toggle -->
       <div class="flex items-center gap-3">
           <span class="text-sm" :class="isDark ? 'text-white/60' : 'text-black/50'">Monthly</span>

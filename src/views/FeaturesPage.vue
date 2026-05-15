@@ -1,7 +1,13 @@
 <template>
   <main class="pt-24">
     <!-- Hero -->
-    <PageHero eyebrow="Features" :title="t.features.headline" :subtitle="t.features.sub" :is-dark="isDark" />
+    <PageHero
+      eyebrow="Features"
+      :title="t.features.headline"
+      :subtitle="t.features.sub"
+      banner-src="./banners/features-banner.svg"
+      :is-dark="isDark"
+    />
 
     <!-- Feature 1: Social Energy Curve -->
     <section class="py-24 lg:py-40 border-b" :class="isDark ? 'border-white/8' : 'border-black/6'">

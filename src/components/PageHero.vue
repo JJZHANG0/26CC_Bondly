@@ -1,5 +1,7 @@
 <template>
-  <section class="page-hero border-b" :class="isDark ? 'border-white/8' : 'border-black/6'">
+  <section class="page-hero border-b" :class="isDark ? 'border-white/8 is-dark' : 'border-black/6 is-light'">
+    <img class="page-hero__image" :src="bannerSrc" :alt="`${eyebrow} banner`" />
+    <div class="page-hero__shade" aria-hidden="true"></div>
     <div class="page-hero__inner">
       <div class="page-hero__copy">
         <p class="page-hero__eyebrow reveal" :class="isDark ? 'text-white/35' : 'text-black/35'">
@@ -19,42 +21,6 @@
           <slot />
         </div>
       </div>
-
-      <div class="page-hero__poster reveal reveal-delay-2" :class="isDark ? 'is-dark' : 'is-light'" aria-hidden="true">
-        <svg viewBox="0 0 640 360" fill="none" class="page-hero__poster-svg">
-          <path
-            d="M46 252 C128 202 176 280 246 222 C304 174 342 100 420 136 C488 168 510 98 594 112"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-          />
-          <path
-            d="M54 168 C126 132 178 196 244 154 C316 108 384 82 448 124 C494 154 536 154 592 126"
-            stroke="currentColor"
-            stroke-width="1"
-            stroke-linecap="round"
-            opacity="0.42"
-          />
-          <path
-            d="M80 278 H560"
-            stroke="currentColor"
-            stroke-width="1"
-            stroke-linecap="round"
-            opacity="0.16"
-          />
-          <path
-            v-for="x in [120, 220, 320, 420, 520]"
-            :key="x"
-            :d="`M${x} 78 V304`"
-            stroke="currentColor"
-            stroke-width="1"
-            opacity="0.08"
-          />
-          <circle cx="420" cy="136" r="5" fill="currentColor" />
-          <circle cx="246" cy="222" r="4" fill="currentColor" opacity="0.48" />
-          <rect x="72" y="76" width="496" height="228" rx="6" stroke="currentColor" opacity="0.12" />
-        </svg>
-      </div>
     </div>
   </section>
 </template>
@@ -72,6 +38,10 @@ defineProps({
   subtitle: {
     type: String,
     default: '',
+  },
+  bannerSrc: {
+    type: String,
+    required: true,
   },
   isDark: {
     type: Boolean,

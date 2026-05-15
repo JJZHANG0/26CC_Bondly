@@ -1,7 +1,13 @@
 <template>
   <main class="pt-24">
     <!-- Hero -->
-    <PageHero eyebrow="Download" :title="t.download.headline" :subtitle="t.download.sub" :is-dark="isDark">
+    <PageHero
+      eyebrow="Download"
+      :title="t.download.headline"
+      :subtitle="t.download.sub"
+      banner-src="./banners/download-banner.svg"
+      :is-dark="isDark"
+    >
       <!-- Download buttons -->
       <div class="flex flex-col sm:flex-row sm:flex-wrap items-stretch gap-4">
         <!-- App Store -->
@@ -58,7 +64,7 @@
       </div>
 
       <!-- QR Code placeholder -->
-      <div class="mt-7 flex items-center gap-4">
+      <div class="hidden">
           <div
             class="w-24 h-24 rounded-lg border flex items-center justify-center"
             :class="isDark ? 'border-white/15' : 'border-black/10'"

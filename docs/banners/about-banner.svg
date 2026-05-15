@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2400 900" role="img" aria-label="About AuraLoop banner">
+  <rect width="2400" height="900" fill="#f7f7f4"/>
+  <g opacity=".45" stroke="#d9ddd3" stroke-width="1">
+    <path d="M0 180h2400M0 360h2400M0 540h2400M0 720h2400"/>
+    <path d="M240 0v900M480 0v900M720 0v900M960 0v900M1200 0v900M1440 0v900M1680 0v900M1920 0v900M2160 0v900"/>
+  </g>
+  <circle cx="1690" cy="390" r="270" fill="#e8f4dc" opacity=".58"/>
+  <path d="M1140 590c180-120 310 88 480-28 150-102 245-276 424-190 116 56 196-72 334-30" fill="none" stroke="#111" stroke-width="7" stroke-linecap="round" opacity=".55"/>
+  <path d="M1060 390c166-96 286 70 436-20 158-94 306-138 452-36 100 70 204 56 320-24" fill="none" stroke="#111" stroke-width="4" stroke-linecap="round" opacity=".22"/>
+  <circle cx="1620" cy="562" r="12" fill="#111" opacity=".45"/>
+  <circle cx="2044" cy="372" r="12" fill="#111" opacity=".55"/>
+  <rect x="1000" y="246" width="1030" height="438" rx="18" fill="none" stroke="#111" stroke-width="2" opacity=".08"/>
+</svg>
