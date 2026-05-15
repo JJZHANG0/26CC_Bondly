@@ -3,15 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="26CC Bondly — Social energy intelligence." />
   <title>26CC Bondly</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <!--
+    GitHub Pages often publishes the repo root. That must NOT load /src/main.js
+    (that URL is site-root-relative and 404s on github.io).
+    The built app lives under ./docs/ — redirect there.
+    Local dev: Vite serves spa.html for / (see vite.config.js).
+  -->
+  <script>
+    (function () {
+      var q = location.search || ''
+      var h = location.hash || ''
+      location.replace('./docs/' + q + h)
+    })()
+  </script>
 </head>
 <body>
-  <div id="app"></div>
-  <script type="module" src="/src/main.js"></script>
+  <p style="font-family: system-ui, sans-serif; margin: 2rem">
+    <a href="./docs/">Open 26CC Bondly</a>
+  </p>
 </body>
 </html>
