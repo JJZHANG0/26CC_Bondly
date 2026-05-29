@@ -7,21 +7,6 @@ const routes = [
     component: () => import('@/views/HomePage.vue'),
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('@/views/AboutPage.vue'),
-  },
-  {
-    path: '/features',
-    name: 'Features',
-    component: () => import('@/views/FeaturesPage.vue'),
-  },
-  {
-    path: '/pricing',
-    name: 'Pricing',
-    component: () => import('@/views/PricingPage.vue'),
-  },
-  {
     path: '/products',
     name: 'Products',
     component: () => import('@/views/ProductsPage.vue'),
@@ -30,6 +15,25 @@ const routes = [
     path: '/download',
     name: 'Download',
     component: () => import('@/views/DownloadPage.vue'),
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: () => import('@/views/AboutPage.vue'),
+  },
+  {
+    path: '/help',
+    name: 'Help',
+    component: () => import('@/views/HelpPage.vue'),
+  },
+  {
+    path: '/pricing',
+    name: 'Pricing',
+    component: () => import('@/views/PricingPage.vue'),
+  },
+  {
+    path: '/features',
+    redirect: '/products',
   },
 ]
 

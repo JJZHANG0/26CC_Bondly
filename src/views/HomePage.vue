@@ -1,470 +1,99 @@
 <template>
   <main>
-    <!-- Hero Section -->
     <section class="home-hero">
-      <div class="home-hero__backdrop" aria-hidden="true">
-        <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
-          <path
-            ref="energyPath"
-            d="M-120 560 C160 430 280 690 520 500 C720 342 830 210 1070 340 C1270 448 1380 246 1720 330"
-            :stroke="isDark ? 'white' : 'black'"
-            stroke-width="1.1"
-            fill="none"
-            stroke-linecap="round"
-            class="energy-path"
-          />
-          <path
-            d="M-80 414 C160 302 300 458 490 354 C690 244 880 214 1060 314 C1220 404 1380 388 1640 230"
-            :stroke="isDark ? 'white' : 'black'"
-            stroke-width="0.7"
-            fill="none"
-            stroke-linecap="round"
-            opacity="0.34"
-            class="energy-path"
-            style="animation-delay: 0.45s"
-          />
-        </svg>
+      <img class="home-hero__image" :src="`${baseUrl}images/home-room.png`" alt="阳光照进安静房间的暖色照片" />
+      <div class="home-hero__shade" aria-hidden="true"></div>
+
+      <div class="home-hero__content">
+        <p class="eyebrow">Bondly conversation companion</p>
+        <h1>你的情绪，不该自己扛</h1>
+        <p class="home-hero__subtitle">Bondly帮你分析每一段对话，拆解你的自我与内耗</p>
+        <router-link to="/download" class="primary-button">免费下载App</router-link>
       </div>
 
-      <div class="home-hero__inner">
-        <div class="home-hero__copy">
-          <div
-            class="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium reveal"
-            :class="isDark ? 'border-white/15 text-white/55' : 'border-black/10 text-black/45'"
-          >
-            <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse inline-block"></span>
-            Social Energy Intelligence
-          </div>
+      <button class="home-stickman" type="button" @click="speechOpen = !speechOpen" aria-label="让 Bondly 打招呼">
+        <span class="speech-bubble" :class="{ 'speech-bubble--open': speechOpen }">嗨，我是Bondly</span>
+        <StickFigure pose="lying" />
+      </button>
+    </section>
 
-          <h1 class="home-hero__title reveal reveal-delay-1" :class="isDark ? 'text-white' : 'text-black'">
-            {{ t.home.heroHeadline }}
-          </h1>
-
-          <p class="home-hero__subtitle reveal reveal-delay-2" :class="isDark ? 'text-white/55' : 'text-black/50'">
-            {{ t.home.heroSub }}
-          </p>
-
-          <div class="home-hero__actions reveal reveal-delay-3">
-            <router-link
-              to="/download"
-              class="inline-flex items-center justify-center rounded-lg border px-7 py-3.5 text-sm font-medium transition-all duration-300"
-              :class="isDark
-                ? 'bg-white text-black border-white hover:bg-transparent hover:text-white hover:border-[#39FF14] hover:shadow-[0_0_24px_rgba(57,255,20,0.3)]'
-                : 'bg-black text-white border-black hover:bg-transparent hover:text-black hover:border-[#BF5FFF] hover:shadow-[0_0_24px_rgba(191,95,255,0.3)]'"
-            >
-              {{ t.home.ctaPrimary }}
-            </router-link>
-            <button
-              class="inline-flex items-center justify-center gap-2 rounded-lg border px-7 py-3.5 text-sm font-medium transition-all duration-300"
-              :class="isDark
-                ? 'border-white/20 text-white/70 hover:border-white hover:text-white'
-                : 'border-black/15 text-black/60 hover:border-black hover:text-black'"
-            >
-              <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
-                <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
-              </svg>
-              {{ t.home.ctaSecondary }}
-            </button>
-          </div>
-        </div>
-
-        <div class="home-hero__visual reveal reveal-delay-2" :class="isDark ? 'is-dark' : 'is-light'">
-          <div class="home-hero__visual-head">
-            <div>
-              <p>Energy Map</p>
-              <span>Today · workplace + close ties</span>
+    <section class="section section--tight">
+      <div class="container">
+        <div class="highlight-grid">
+          <article v-for="item in highlights" :key="item.title" class="highlight-card">
+            <div class="icon-box" aria-hidden="true">
+              <component :is="item.icon" />
             </div>
-            <div class="home-hero__live">
-              <span></span>
-              Live
-            </div>
-          </div>
-
-          <svg viewBox="0 0 620 360" fill="none" class="home-hero__chart">
-            <defs>
-              <linearGradient id="homeHeroArea" x1="0" y1="90" x2="0" y2="330" gradientUnits="userSpaceOnUse">
-                <stop :stop-color="isDark ? 'white' : 'black'" stop-opacity="0.13" />
-                <stop offset="1" :stop-color="isDark ? 'white' : 'black'" stop-opacity="0" />
-              </linearGradient>
-            </defs>
-            <path v-for="y in [92, 152, 212, 272, 332]" :key="`h-${y}`" :d="`M40 ${y}H580`" :stroke="isDark ? 'white' : 'black'" opacity="0.08"/>
-            <path v-for="x in [110, 200, 290, 380, 470, 560]" :key="`v-${x}`" :d="`M${x} 70V332`" :stroke="isDark ? 'white' : 'black'" opacity="0.06"/>
-            <path
-              d="M40 288 C92 260 126 224 178 238 C236 254 256 310 316 260 C376 210 392 126 464 152 C524 174 536 112 580 96 L580 332 L40 332 Z"
-              fill="url(#homeHeroArea)"
-            />
-            <path
-              d="M40 288 C92 260 126 224 178 238 C236 254 256 310 316 260 C376 210 392 126 464 152 C524 174 536 112 580 96"
-              :stroke="isDark ? 'white' : 'black'"
-              stroke-width="2.8"
-              stroke-linecap="round"
-            />
-            <path
-              d="M40 210 C100 186 132 202 188 176 C252 146 316 126 378 154 C436 180 498 190 580 150"
-              :stroke="isDark ? 'white' : 'black'"
-              stroke-width="1.2"
-              stroke-linecap="round"
-              opacity="0.38"
-            />
-            <circle cx="316" cy="260" r="6" :fill="isDark ? 'white' : 'black'" />
-            <circle cx="464" cy="152" r="7" :fill="isDark ? '#39FF14' : '#BF5FFF'" />
-            <path d="M464 72V320" :stroke="isDark ? '#39FF14' : '#BF5FFF'" stroke-width="1" stroke-dasharray="5 6" opacity="0.55"/>
-          </svg>
-
-          <div class="home-hero__insight-row">
-            <div>
-              <span>Social Energy</span>
-              <strong>72%</strong>
-              <p>Rising after recovery window</p>
-            </div>
-            <div>
-              <span>Conversation</span>
-              <strong>98%</strong>
-              <p>Local analysis complete</p>
-            </div>
-            <div>
-              <span>Privacy</span>
-              <strong>On-device</strong>
-              <p>No unnecessary upload</p>
-            </div>
-          </div>
+            <h2>{{ item.title }}</h2>
+            <p>{{ item.body }}</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- Problem Section -->
-    <section class="py-32 lg:py-48">
-      <div class="max-w-5xl mx-auto px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <p class="text-xs tracking-widest uppercase mb-6 reveal" :class="isDark ? 'text-white/30' : 'text-black/30'">
-              The Problem
-            </p>
-            <h2
-              class="text-headline font-light tracking-tighter leading-tight reveal reveal-delay-1"
-              :class="isDark ? 'text-white' : 'text-black'"
-            >
-              {{ t.home.problemHeadline }}
-            </h2>
-          </div>
-          <div class="reveal reveal-delay-2">
-            <p
-              class="text-base lg:text-lg font-light leading-relaxed"
-              :class="isDark ? 'text-white/55' : 'text-black/50'"
-            >
-              {{ t.home.problemBody }}
-            </p>
-          </div>
+    <section class="section home-closing">
+      <div class="container home-closing__inner">
+        <div>
+          <p class="eyebrow">Start gently</p>
+          <h2>先把一段让你难受的对话，交给Bondly看看。</h2>
         </div>
-
-        <!-- Patterns grid -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-20">
-          <div
-            v-for="(item, i) in problemItems"
-            :key="i"
-            class="rounded-2xl border p-5 reveal card-hover"
-            :class="[isDark ? 'border-white/8 hover:border-white/20' : 'border-black/6 hover:border-black/15', `reveal-delay-${i+1}`]"
-            :style="`transition-delay: ${i * 0.08}s`"
-          >
-            <div class="text-2xl mb-3">{{ item.icon }}</div>
-            <p class="text-xs leading-relaxed" :class="isDark ? 'text-white/50' : 'text-black/45'">{{ item.text }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Solution Section -->
-    <section class="py-32 lg:py-48 border-t" :class="isDark ? 'border-white/8' : 'border-black/6'">
-      <div class="max-w-5xl mx-auto px-6 lg:px-8">
-        <div class="text-center mb-20">
-          <p class="text-xs tracking-widest uppercase mb-6 reveal" :class="isDark ? 'text-white/30' : 'text-black/30'">
-            The Solution
-          </p>
-          <h2
-            class="text-headline font-light tracking-tighter leading-tight max-w-3xl mx-auto reveal reveal-delay-1"
-            :class="isDark ? 'text-white' : 'text-black'"
-          >
-            {{ t.home.solutionHeadline }}
-          </h2>
-          <p
-            class="text-base lg:text-lg font-light mt-6 max-w-2xl mx-auto reveal reveal-delay-2"
-            :class="isDark ? 'text-white/50' : 'text-black/45'"
-          >
-            {{ t.home.solutionBody }}
-          </p>
-        </div>
-
-        <!-- Feature mini-cards -->
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <div
-            v-for="(feat, i) in homeFeatures"
-            :key="i"
-            class="rounded-2xl border p-6 reveal card-hover group cursor-pointer"
-            :class="[isDark ? 'border-white/8 hover:border-white/20' : 'border-black/6 hover:border-black/15']"
-            :style="`transition-delay: ${i * 0.1}s`"
-          >
-            <div
-              class="w-10 h-10 rounded-xl flex items-center justify-center mb-4 transition-colors duration-300"
-              :class="isDark ? 'bg-white/8 group-hover:bg-white/15' : 'bg-black/5 group-hover:bg-black/10'"
-            >
-              <component :is="feat.icon" :isDark="isDark" />
-            </div>
-            <h3 class="text-sm font-medium mb-2" :class="isDark ? 'text-white' : 'text-black'">
-              {{ t.home[feat.titleKey] }}
-            </h3>
-            <p class="text-xs leading-relaxed" :class="isDark ? 'text-white/45' : 'text-black/40'">
-              {{ t.home[feat.descKey] }}
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Energy Curve Visual Section -->
-    <section class="py-32 lg:py-48">
-      <div class="max-w-5xl mx-auto px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          <!-- Chart mockup -->
-          <div
-            class="rounded-2xl border p-8 reveal"
-            :class="isDark ? 'border-white/10' : 'border-black/8'"
-          >
-            <div class="flex items-center justify-between mb-6">
-              <div>
-                <div class="text-sm font-medium" :class="isDark ? 'text-white' : 'text-black'">Social Energy Curve</div>
-                <div class="text-xs mt-0.5" :class="isDark ? 'text-white/35' : 'text-black/30'">Last 7 days</div>
-              </div>
-              <div class="flex items-center gap-1.5 text-xs" :class="isDark ? 'text-white/40' : 'text-black/35'">
-                <span class="w-2 h-2 rounded-full bg-green-400 inline-block"></span>
-                Live
-              </div>
-            </div>
-            <svg viewBox="0 0 300 120" class="w-full" fill="none">
-              <!-- Grid lines -->
-              <line x1="0" y1="30" x2="300" y2="30" :stroke="isDark ? 'white' : 'black'" stroke-width="0.3" opacity="0.2"/>
-              <line x1="0" y1="60" x2="300" y2="60" :stroke="isDark ? 'white' : 'black'" stroke-width="0.3" opacity="0.2"/>
-              <line x1="0" y1="90" x2="300" y2="90" :stroke="isDark ? 'white' : 'black'" stroke-width="0.3" opacity="0.2"/>
-              <!-- Area fill -->
-              <path
-                d="M0,90 C20,85 40,70 60,75 S90,95 110,80 S140,40 160,55 S190,85 220,60 S260,30 300,20 L300,120 L0,120 Z"
-                :fill="isDark ? 'white' : 'black'"
-                opacity="0.04"
-              />
-              <!-- Main curve -->
-              <path
-                d="M0,90 C20,85 40,70 60,75 S90,95 110,80 S140,40 160,55 S190,85 220,60 S260,30 300,20"
-                :stroke="isDark ? 'white' : 'black'"
-                stroke-width="1.5"
-                fill="none"
-                stroke-linecap="round"
-              />
-              <!-- Dots -->
-              <circle cx="60" cy="75" r="2.5" :fill="isDark ? 'white' : 'black'"/>
-              <circle cx="110" cy="80" r="2.5" :fill="isDark ? 'white' : 'black'"/>
-              <circle cx="160" cy="55" r="2.5" :fill="isDark ? 'white' : 'black'"/>
-              <circle cx="220" cy="60" r="2.5" :fill="isDark ? 'white' : 'black'"/>
-              <circle cx="300" cy="20" r="3" :fill="isDark ? '#39FF14' : '#BF5FFF'"/>
-            </svg>
-            <!-- Day labels -->
-            <div class="flex justify-between mt-2">
-              <span
-                v-for="day in ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']"
-                :key="day"
-                class="text-xs"
-                :class="isDark ? 'text-white/25' : 'text-black/25'"
-              >{{ day }}</span>
-            </div>
-          </div>
-
-          <!-- Text -->
-          <div>
-            <p class="text-xs tracking-widest uppercase mb-5 reveal" :class="isDark ? 'text-white/30' : 'text-black/30'">
-              Energy Visibility
-            </p>
-            <h2
-              class="text-headline font-light tracking-tighter leading-tight mb-6 reveal reveal-delay-1"
-              :class="isDark ? 'text-white' : 'text-black'"
-            >
-              See your social energy, not just your mood.
-            </h2>
-            <p
-              class="text-base font-light leading-relaxed mb-8 reveal reveal-delay-2"
-              :class="isDark ? 'text-white/50' : 'text-black/45'"
-            >
-              Track how different interactions affect your mental and physical energy over time. Identify patterns before exhaustion sets in.
-            </p>
-            <router-link
-              to="/features"
-              class="inline-flex items-center gap-2 text-sm font-medium reveal reveal-delay-3 group"
-              :class="isDark ? 'text-white' : 'text-black'"
-            >
-              Explore features
-              <svg viewBox="0 0 16 16" fill="none" class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1">
-                <path d="M3 8h10M9 4l4 4-4 4" :stroke="isDark ? 'white' : 'black'" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </router-link>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Privacy Section -->
-    <section class="py-32 lg:py-48 border-t" :class="isDark ? 'border-white/8' : 'border-black/6'">
-      <div class="max-w-5xl mx-auto px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <p class="text-xs tracking-widest uppercase mb-5 reveal" :class="isDark ? 'text-white/30' : 'text-black/30'">
-              Privacy Promise
-            </p>
-            <h2
-              class="text-headline font-light tracking-tighter leading-tight mb-6 reveal reveal-delay-1"
-              :class="isDark ? 'text-white' : 'text-black'"
-            >
-              {{ t.home.privacyHeadline }}
-            </h2>
-            <p
-              class="text-base font-light leading-relaxed mb-10 reveal reveal-delay-2"
-              :class="isDark ? 'text-white/50' : 'text-black/45'"
-            >
-              {{ t.home.privacyBody }}
-            </p>
-            <div class="space-y-4 reveal reveal-delay-3">
-              <div
-                v-for="item in privacyItems"
-                :key="item"
-                class="flex items-center gap-3 text-sm"
-                :class="isDark ? 'text-white/60' : 'text-black/55'"
-              >
-                <div
-                  class="w-4 h-4 rounded-full border flex items-center justify-center flex-shrink-0"
-                  :class="isDark ? 'border-white/30' : 'border-black/20'"
-                >
-                  <svg viewBox="0 0 10 10" fill="none" class="w-2 h-2">
-                    <path d="M1.5 5l2.5 2.5 4.5-5" :stroke="isDark ? 'white' : 'black'" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </div>
-                {{ item }}
-              </div>
-            </div>
-          </div>
-          <!-- Privacy visual -->
-          <div class="flex items-center justify-center reveal reveal-delay-2">
-            <div
-              class="w-64 h-64 rounded-full border flex items-center justify-center relative"
-              :class="isDark ? 'border-white/10' : 'border-black/8'"
-            >
-              <div
-                class="w-48 h-48 rounded-full border flex items-center justify-center"
-                :class="isDark ? 'border-white/8' : 'border-black/6'"
-              >
-                <div
-                  class="w-32 h-32 rounded-full border flex items-center justify-center"
-                  :class="isDark ? 'border-white/15' : 'border-black/10'"
-                >
-                  <svg viewBox="0 0 48 48" fill="none" class="w-10 h-10">
-                    <path d="M24 4L8 10v16c0 10 7 18.7 16 22 9-3.3 16-12 16-22V10L24 4z" :stroke="isDark ? 'white' : 'black'" stroke-width="1.5" stroke-linejoin="round"/>
-                    <path d="M17 24l5 5 9-10" :stroke="isDark ? 'white' : 'black'" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </div>
-              </div>
-              <span class="absolute top-4 right-8 text-xs" :class="isDark ? 'text-white/25' : 'text-black/20'">Local</span>
-              <span class="absolute bottom-8 left-4 text-xs" :class="isDark ? 'text-white/25' : 'text-black/20'">Private</span>
-              <span class="absolute top-1/2 left-0 -translate-y-1/2 text-xs -translate-x-1" :class="isDark ? 'text-white/25' : 'text-black/20'">Secure</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Final CTA Section -->
-    <section class="py-32 lg:py-48 border-t" :class="isDark ? 'border-white/8' : 'border-black/6'">
-      <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-        <h2
-          class="text-display font-light tracking-tightest leading-none mb-8 reveal whitespace-pre-line"
-          :class="isDark ? 'text-white' : 'text-black'"
-        >{{ t.home.finalHeadline }}</h2>
-        <p
-          class="text-base font-light mb-12 reveal reveal-delay-1"
-          :class="isDark ? 'text-white/45' : 'text-black/40'"
-        >{{ t.home.finalSub }}</p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 reveal reveal-delay-2">
-          <router-link
-            to="/download"
-            class="px-10 py-4 rounded-xl text-sm font-medium border transition-all duration-300"
-            :class="isDark
-              ? 'bg-white text-black border-white hover:bg-transparent hover:text-white hover:border-[#39FF14] hover:shadow-[0_0_30px_rgba(57,255,20,0.3)]'
-              : 'bg-black text-white border-black hover:bg-transparent hover:text-black hover:border-[#BF5FFF] hover:shadow-[0_0_30px_rgba(191,95,255,0.3)]'"
-          >
-            {{ t.home.finalCta }}
-          </router-link>
-          <router-link
-            to="/pricing"
-            class="px-10 py-4 rounded-xl text-sm font-medium border transition-all duration-300"
-            :class="isDark
-              ? 'border-white/20 text-white/60 hover:border-white hover:text-white'
-              : 'border-black/15 text-black/50 hover:border-black hover:text-black'"
-          >
-            View pricing
-          </router-link>
-        </div>
+        <router-link to="/download" class="secondary-button">开始使用Bondly</router-link>
       </div>
     </section>
   </main>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, defineComponent, h } from 'vue'
-import { useAppStore } from '@/stores/appStore'
-import { useTranslation } from '@/i18n/translations'
-import { useScrollReveal } from '@/composables/useScrollReveal'
+import { h, ref } from 'vue'
+import StickFigure from '@/components/StickFigure.vue'
 
-const store = useAppStore()
-const isDark = computed(() => store.isDark)
-const t = computed(() => useTranslation(store.language))
+const speechOpen = ref(false)
+const baseUrl = import.meta.env.BASE_URL
 
-useScrollReveal()
+const RecordIcon = {
+  render() {
+    return h('svg', { viewBox: '0 0 28 28', fill: 'none' }, [
+      h('rect', { x: '6', y: '4', width: '16', height: '20', rx: '4', stroke: 'currentColor', 'stroke-width': '1.8' }),
+      h('path', { d: 'M11 10h6M11 14h6M11 18h4', stroke: 'currentColor', 'stroke-width': '1.8', 'stroke-linecap': 'round' }),
+    ])
+  },
+}
 
-// Inline icon components
-const CurveIcon = defineComponent({ props: ['isDark'], render(props) {
-  return h('svg', { viewBox: '0 0 20 20', fill: 'none', class: 'w-5 h-5' }, [
-    h('path', { d: 'M2 14 C5 14 6 8 8 10 S12 15 14 10 S17 5 18 6', stroke: props.isDark ? 'white' : 'black', 'stroke-width': '1.2', 'stroke-linecap': 'round' })
-  ])
-}})
-const ChatIcon = defineComponent({ props: ['isDark'], render(props) {
-  return h('svg', { viewBox: '0 0 20 20', fill: 'none', class: 'w-5 h-5' }, [
-    h('path', { d: 'M2 4a2 2 0 012-2h12a2 2 0 012 2v8a2 2 0 01-2 2H6l-4 3V4z', stroke: props.isDark ? 'white' : 'black', 'stroke-width': '1.2', 'stroke-linejoin': 'round' })
-  ])
-}})
-const ReplayIcon = defineComponent({ props: ['isDark'], render(props) {
-  return h('svg', { viewBox: '0 0 20 20', fill: 'none', class: 'w-5 h-5' }, [
-    h('path', { d: 'M4 8V4l-3 3 3 3V8a7 7 0 107 7', stroke: props.isDark ? 'white' : 'black', 'stroke-width': '1.2', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' })
-  ])
-}})
-const LockIcon = defineComponent({ props: ['isDark'], render(props) {
-  return h('svg', { viewBox: '0 0 20 20', fill: 'none', class: 'w-5 h-5' }, [
-    h('rect', { x: '4', y: '9', width: '12', height: '9', rx: '2', stroke: props.isDark ? 'white' : 'black', 'stroke-width': '1.2' }),
-    h('path', { d: 'M7 9V7a3 3 0 016 0v2', stroke: props.isDark ? 'white' : 'black', 'stroke-width': '1.2', 'stroke-linecap': 'round' })
-  ])
-}})
+const MomentIcon = {
+  render() {
+    return h('svg', { viewBox: '0 0 28 28', fill: 'none' }, [
+      h('path', { d: 'M14 4v20M4 14h20', stroke: 'currentColor', 'stroke-width': '1.8', 'stroke-linecap': 'round' }),
+      h('circle', { cx: '14', cy: '14', r: '7', stroke: 'currentColor', 'stroke-width': '1.8' }),
+      h('path', { d: 'M18 9 9 18', stroke: 'currentColor', 'stroke-width': '1.8', 'stroke-linecap': 'round' }),
+    ])
+  },
+}
 
-const homeFeatures = [
-  { titleKey: 'feature1Title', descKey: 'feature1Desc', icon: CurveIcon },
-  { titleKey: 'feature2Title', descKey: 'feature2Desc', icon: ChatIcon },
-  { titleKey: 'feature3Title', descKey: 'feature3Desc', icon: ReplayIcon },
-  { titleKey: 'feature4Title', descKey: 'feature4Desc', icon: LockIcon },
-]
+const CompanionIcon = {
+  render() {
+    return h('svg', { viewBox: '0 0 28 28', fill: 'none' }, [
+      h('circle', { cx: '10', cy: '10', r: '4', stroke: 'currentColor', 'stroke-width': '1.8' }),
+      h('circle', { cx: '19', cy: '13', r: '4', stroke: 'currentColor', 'stroke-width': '1.8' }),
+      h('path', { d: 'M4 23c1-5 4-8 8-8M14 24c1-4 4-6 8-6', stroke: 'currentColor', 'stroke-width': '1.8', 'stroke-linecap': 'round' }),
+    ])
+  },
+}
 
-const problemItems = [
-  { icon: '◎', text: 'Conversations that drain you for hours afterward' },
-  { icon: '◎', text: 'People who make you second-guess everything you said' },
-  { icon: '◎', text: 'Feeling misunderstood when you try to explain' },
-  { icon: '◎', text: 'Body signals that something is off, even if it looks fine' },
-]
-
-const privacyItems = [
-  'Local-first data processing',
-  'No unnecessary cloud uploads',
-  'User-controlled storage and deletion',
-  'Clear, transparent privacy settings',
+const highlights = [
+  {
+    icon: RecordIcon,
+    title: '录下来就能分析',
+    body: '上传聊天记录截图或录音，不用自己反复想',
+  },
+  {
+    icon: MomentIcon,
+    title: '认出那些让你不舒服的瞬间',
+    body: 'AI帮你找到人际关系中的潜在优势与劣势',
+  },
+  {
+    icon: CompanionIcon,
+    title: '有个伙伴陪你复盘',
+    body: '和Bondly陪伴聊聊，它不会评判你',
+  },
 ]
 </script>
