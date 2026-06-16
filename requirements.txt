@@ -1,0 +1,17 @@
+# Bondly is a Node/Vite frontend project, not a Python project.
+# There are no Python packages to install with pip for this repo.
+#
+# Required runtime:
+# - Node.js >= 18
+# - npm
+#
+# Setup after cloning:
+#   npm install
+#
+# Local development:
+#   npm run dev
+#
+# Build for GitHub Pages:
+#   npm run build:pages
+#
+# Exact npm package versions are locked in package-lock.json.
